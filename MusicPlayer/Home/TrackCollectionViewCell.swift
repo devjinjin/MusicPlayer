@@ -7,14 +7,26 @@
 
 import UIKit
 
-class TrackCollectionViewCell: UIView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+class TrackCollecionViewCell: UICollectionViewCell {
+    @IBOutlet weak var trackThumbnail: UIImageView!
+    @IBOutlet weak var trackTitle: UILabel!
+    @IBOutlet weak var trackArtist: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        trackThumbnail.layer.cornerRadius = 4
+        trackArtist.textColor = UIColor.systemGray2
     }
-    */
-
+    
+    func updateUI(item: Track?) {
+        // TODO: 곡정보 표시하기
+        
+        guard let track = item  else {
+            return
+        }
+        trackTitle.text = track.albumName
+        trackArtist.text = track.artist
+        trackThumbnail.image = track.artwork
+    }
 }
+
